@@ -12,761 +12,397 @@
                 extend: {
                     colors: {
                         gold: '#D4AF37',
-                        matteblack: '#28282B',
+                        matteBlack: '#28282B',
+                        midnightBlack: '#191970',
+                        deepBlack: '#0A0A0A'
                     }
                 }
             }
         }
     </script>
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(40, 40, 43, 0.9) 100%);
-        }
-        .program-card:hover {
+        .course-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
         }
-        .nav-link::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: #D4AF37;
-            transition: width .3s;
+        .whatsapp-btn:hover {
+            animation: pulse 1.5s infinite;
         }
-        .nav-link:hover::after {
-            width: 100%;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #D4AF37, #FFFFFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
     </style>
 </head>
-<body class="bg-matteblack text-gray-100 font-sans">
+<body class="bg-deepBlack text-white min-h-screen">
     <!-- Navigation -->
-    <nav class="bg-matteblack border-b border-gold/20 fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <i class="fas fa-code text-gold text-2xl mr-2"></i>
-                        <span class="text-gold font-bold text-xl">Eck Tech</span>
-                    </div>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-gray-300 hover:text-gold px-3 py-2 text-sm font-medium">Home</a>
-                    <a href="#services" class="nav-link text-gray-300 hover:text-gold px-3 py-2 text-sm font-medium">Services</a>
-                    <a href="#programs" class="nav-link text-gray-300 hover:text-gold px-3 py-2 text-sm font-medium">Training</a>
-                    <a href="#about" class="nav-link text-gray-300 hover:text-gold px-3 py-2 text-sm font-medium">About</a>
-                    <a href="#contact" class="nav-link text-gray-300 hover:text-gold px-3 py-2 text-sm font-medium">Contact</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="text-gold hover:text-white focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-
-                <!-- Additional Services Row -->
-                <div class="grid md:grid-cols-3 gap-8 mt-8">
-                    <!-- Service 4 -->
-                    <div class="bg-gradient-to-br from-matteblack to-matteblack/90 border border-gold/20 rounded-xl p-8 transition duration-300 hover:border-gold/50">
-                        <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-desktop text-gold text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Digital Literacy</h3>
-                        <p class="text-gray-400">
-                            Essential digital skills training for individuals and organizations to thrive in the digital age.
-                        </p>
-                    </div>
-                    
-                    <!-- Service 5 -->
-                    <div class="bg-gradient-to-br from-matteblack to-matteblack/90 border border-gold/20 rounded-xl p-8 transition duration-300 hover:border-gold/50">
-                        <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-mobile-alt text-gold text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">UX/UI Design</h3>
-                        <p class="text-gray-400">
-                            User-centered design services to create intuitive and engaging digital experiences.
-                        </p>
-                    </div>
-                    
-                    <!-- Service 6 -->
-                    <div class="bg-gradient-to-br from-matteblack to-matteblack/90 border border-gold/20 rounded-xl p-8 transition duration-300 hover:border-gold/50">
-                        <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-users text-gold text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Corporate Training</h3>
-                        <p class="text-gray-400">
-                            Customized training programs designed to upskill your workforce in key technology areas.
-                        </p>
-                    </div>
-                </div>
+    <nav class="bg-matteBlack py-4 px-6 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-laptop-code text-gold text-2xl"></i>
+                <h1 class="text-xl font-bold gradient-text">Eck Tech Developers Hub</h1>
             </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#courses" class="hover:text-gold transition">Courses</a>
+                <a href="#features" class="hover:text-gold transition">Features</a>
+                <a href="#contact" class="hover:text-gold transition">Contact</a>
+            </div>
+            <button class="md:hidden text-gold" id="menuBtn">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-midnightBlack mt-2 py-2 px-4 rounded-lg" id="mobileMenu">
+            <a href="#courses" class="block py-2 hover:text-gold">Courses</a>
+            <a href="#features" class="block py-2 hover:text-gold">Features</a>
+            <a href="#contact" class="block py-2 hover:text-gold">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="gradient-bg pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="md:flex items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                        <span class="text-gold">Eck Tech</span> Developers Hub
-                    </h1>
-                    <p class="text-lg text-gray-300 mb-8 max-w-lg">
-                        Full-service tech solutions provider offering graphic design, UX/UI, software development, mobile apps, and comprehensive training programs.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#programs" class="bg-gold hover:bg-gold/90 text-matteblack font-bold py-3 px-6 rounded-lg transition duration-300">
-                            Explore Programs
-                        </a>
-                        <a href="#contact" class="border border-gold text-gold hover:bg-gold/10 font-bold py-3 px-6 rounded-lg transition duration-300">
-                            Contact Us
-                        </a>
+    <section class="py-20 px-6 bg-gradient-to-b from-midnightBlack to-deepBlack">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Master <span class="gradient-text">Tech Skills</span> Online</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Transform your career with our comprehensive IT training programs designed for beginners and professionals alike.</p>
+            <a href="#courses" class="bg-gold text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-600 transition inline-block">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 px-6 bg-matteBlack">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Why Choose Eck Tech?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-deepBlack p-6 rounded-lg border border-gold">
+                    <div class="text-gold text-3xl mb-4">
+                        <i class="fas fa-globe"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-2">Online Learning</h3>
+                    <p>Learn from anywhere in the world at your own pace with our flexible online courses.</p>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative w-full max-w-md">
-                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-gold/20 rounded-full"></div>
-                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-gold/20 rounded-full"></div>
-                        <div class="relative bg-matteblack border border-gold/30 p-6 rounded-xl shadow-xl">
-                            <div class="flex justify-between mb-6">
-                                <div>
-                                    <p class="text-gray-400 text-sm">Our Services</p>
-                                    <h3 class="text-gold font-bold">Tech Solutions</h3>
-                                </div>
-                                <i class="fas fa-laptop-code text-gold text-3xl"></i>
+                <div class="bg-deepBlack p-6 rounded-lg border border-gold">
+                    <div class="text-gold text-3xl mb-4">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Expert Instructors</h3>
+                    <p>Learn from industry professionals with years of practical experience in their fields.</p>
+                </div>
+                <div class="bg-deepBlack p-6 rounded-lg border border-gold">
+                    <div class="text-gold text-3xl mb-4">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Practical Projects</h3>
+                    <p>Gain hands-on experience with real-world projects to build your portfolio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-16 px-6 bg-deepBlack">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Our Courses</h2>
+            <p class="text-center mb-8 max-w-3xl mx-auto">Select the courses you're interested in and send your selections directly to our WhatsApp for more information.</p>
+            
+            <form id="courseForm" class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Course Cards -->
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="practicalIT" name="courses" value="Practical IT Training" class="hidden">
+                        <label for="practicalIT" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fas fa-server"></i>
                             </div>
-                            <ul class="space-y-3">
-                                <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gold mr-3"></i>
-                                    <span>Software Development</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gold mr-3"></i>
-                                    <span>UX/UI Design</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gold mr-3"></i>
-                                    <span>Tech Training</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gold mr-3"></i>
-                                    <span>Mobile Apps</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-check-circle text-gold mr-3"></i>
-                                    <span>Graphic Design</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-matteblack px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Our <span class="text-gold">Core Services</span>
-                </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    We provide comprehensive tech solutions tailored to your business needs
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-gradient-to-br from-matteblack to-matteblack/90 border border-gold/20 rounded-xl p-8 transition duration-300 hover:border-gold/50">
-                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-code text-gold text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Software Development</h3>
-                    <p class="text-gray-400">
-                        Custom software solutions built with cutting-edge technologies to streamline your business operations.
-                    </p>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="bg-gradient-to-br from-matteblack to-matteblack/90 border border-gold/20 rounded-xl p-8 transition duration-300 hover:border-gold/50">
-                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-paint-brush text-gold text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">UX/UI Design</h3>
-                    <p class="text-gray-400">
-                        Beautiful, intuitive interfaces designed to enhance user experience and drive engagement.
-                    </p>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="bg-gradient-to-br from-matteblack to-matteblack/90 border border-gold/20 rounded-xl p-8 transition duration-300 hover:border-gold/50">
-                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-graduation-cap text-gold text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Tech Training</h3>
-                    <p class="text-gray-400">
-                        Comprehensive training programs to upskill your team in the latest technologies and methodologies.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Programs Section -->
-    <section id="programs" class="py-20 gradient-bg px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Our <span class="text-gold">Training Programs</span>
-                </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Practical, hands-on training designed to equip you with in-demand tech skills
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Program 1 -->
-                <div class="program-card bg-matteblack border border-gold/20 rounded-xl overflow-hidden transition duration-300">
-                    <div class="h-48 bg-gold/10 flex items-center justify-center">
-                        <i class="fas fa-laptop-code text-gold text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">Practical IT Training</h3>
-                        <p class="text-gray-400 mb-4">
-                            Hands-on training covering essential IT skills for modern workplaces.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Networking</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Hardware</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Troubleshooting</span>
-                        </div>
-                        <div class="mt-4 flex items-center">
-                            <input type="checkbox" id="program-1" class="h-4 w-4 text-gold focus:ring-gold border-gold/30 rounded">
-                            <label for="program-1" class="ml-2 text-sm text-gray-300">Select this program</label>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Program 2 -->
-                <div class="program-card bg-matteblack border border-gold/20 rounded-xl overflow-hidden transition duration-300">
-                    <div class="h-48 bg-gold/10 flex items-center justify-center">
-                        <i class="fas fa-code text-gold text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">Web Design (HTML, CSS, JS)</h3>
-                        <p class="text-gray-400 mb-4">
-                            Master the fundamentals of web development and create stunning websites.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">HTML5</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">CSS3</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">JavaScript</span>
-                        </div>
-                        <a href="#" class="text-gold font-medium inline-flex items-center">
-                            Learn More <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 3 -->
-                <div class="program-card bg-matteblack border border-gold/20 rounded-xl overflow-hidden transition duration-300">
-                    <div class="h-48 bg-gold/10 flex items-center justify-center">
-                        <i class="fas fa-palette text-gold text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">Graphic Design (Photoshop, Canva)</h3>
-                        <p class="text-gray-400 mb-4">
-                            Learn professional design techniques using industry-standard tools.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Photoshop</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Canva</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Branding</span>
-                        </div>
-                        <a href="#" class="text-gold font-medium inline-flex items-center">
-                            Learn More <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 4 -->
-                <div class="program-card bg-matteblack border border-gold/20 rounded-xl overflow-hidden transition duration-300">
-                    <div class="h-48 bg-gold/10 flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-gold text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">Ethical Hacking Basics</h3>
-                        <p class="text-gray-400 mb-4">
-                            Introduction to cybersecurity principles and ethical hacking techniques.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Security</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Pen Testing</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Networking</span>
-                        </div>
-                        <a href="#" class="text-gold font-medium inline-flex items-center">
-                            Learn More <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 5 -->
-                <div class="program-card bg-matteblack border border-gold/20 rounded-xl overflow-hidden transition duration-300">
-                    <div class="h-48 bg-gold/10 flex items-center justify-center">
-                        <i class="fab fa-python text-gold text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">Python Programming</h3>
-                        <p class="text-gray-400 mb-4">
-                            Learn one of the most versatile programming languages used in various domains.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Python 3</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Automation</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Data Science</span>
-                        </div>
-                        <a href="#" class="text-gold font-medium inline-flex items-center">
-                            Learn More <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 6 -->
-                <div class="program-card bg-matteblack border border-gold/20 rounded-xl overflow-hidden transition duration-300">
-                    <div class="h-48 bg-gold/10 flex items-center justify-center">
-                        <i class="fas fa-file-excel text-gold text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3">Microsoft Office Suite</h3>
-                        <p class="text-gray-400 mb-4">
-                            Master productivity tools including Word, Excel, PowerPoint, and more.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Excel</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">Word</span>
-                            <span class="bg-gold/10 text-gold text-xs px-3 py-1 rounded-full">PowerPoint</span>
-                        </div>
-                        <a href="#" class="text-gold font-medium inline-flex items-center">
-                            Learn More <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center bg-gold hover:bg-gold/90 text-matteblack font-bold py-3 px-6 rounded-lg transition duration-300">
-                    View All Programs <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-matteblack px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="md:flex items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                        About <span class="text-gold">Eck Tech</span>
-                    </h2>
-                    <p class="text-gray-400 mb-6">
-                        Eck Tech Developers Hub is a premier technology solutions provider dedicated to delivering innovative and reliable services to businesses of all sizes.
-                    </p>
-                    <p class="text-gray-400 mb-6">
-                        Our team of experienced professionals combines technical expertise with creative thinking to develop solutions that drive business growth and efficiency.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
-                            <span class="text-gray-300">10+ years of industry experience</span>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
-                            <span class="text-gray-300">Certified professionals in various technologies</span>
-                        </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-check-circle text-gold mt-1 mr-3"></i>
-                            <span class="text-gray-300">Client-focused approach to every project</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <div class="relative">
-                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-gold/10 rounded-full"></div>
-                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-gold/10 rounded-full"></div>
-                        <div class="relative border border-gold/30 rounded-xl overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Team" class="w-full h-auto">
-                            <div class="absolute inset-0 bg-gradient-to-t from-matteblack to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-6">
-                                <h3 class="text-xl font-bold text-white mb-2">Our Team</h3>
-                                <p class="text-gray-300">Dedicated professionals committed to excellence</p>
+                            <h3 class="text-xl font-bold mb-2">Practical IT Training</h3>
+                            <p class="text-gray-300 mb-4">Master essential IT skills for modern workplaces and personal computing.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">Beginner Friendly</span>
                             </div>
-                        </div>
+                        </label>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Testimonials -->
-    <section class="py-20 gradient-bg px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    What Our <span class="text-gold">Clients Say</span>
-                </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Don't just take our word for it - hear from our satisfied clients
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-matteblack border border-gold/20 rounded-xl p-8">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-gold"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Sarah Johnson</h4>
-                            <p class="text-sm text-gray-400">CEO, TechSolutions Inc.</p>
-                        </div>
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="webDesign" name="courses" value="Web Design (HTML, CSS, JS)" class="hidden">
+                        <label for="webDesign" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Web Design</h3>
+                            <p class="text-gray-300 mb-4">Learn HTML, CSS, and JavaScript to build beautiful, responsive websites.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">Popular</span>
+                            </div>
+                        </label>
                     </div>
-                    <p class="text-gray-300 mb-4">
-                        "The web design training transformed our team's capabilities. We can now handle most of our web projects in-house, saving us thousands in development costs."
-                    </p>
-                    <div class="flex text-gold">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="graphicDesign" name="courses" value="Graphic Design (Photoshop, Canva)" class="hidden">
+                        <label for="graphicDesign" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Graphic Design</h3>
+                            <p class="text-gray-300 mb-4">Master Photoshop and Canva to create stunning visuals and designs.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">Creative</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="ethicalHacking" name="courses" value="Ethical Hacking Basics" class="hidden">
+                        <label for="ethicalHacking" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Ethical Hacking</h3>
+                            <p class="text-gray-300 mb-4">Learn cybersecurity fundamentals and ethical hacking techniques.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">Advanced</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="python" name="courses" value="Python Programming" class="hidden">
+                        <label for="python" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Python Programming</h3>
+                            <p class="text-gray-300 mb-4">Learn one of the most versatile programming languages used in various fields.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">High Demand</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="office" name="courses" value="Microsoft Office Suite" class="hidden">
+                        <label for="office" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Microsoft Office</h3>
+                            <p class="text-gray-300 mb-4">Master Word, Excel, PowerPoint and other Office applications for productivity.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">Essential</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="java" name="courses" value="Java and JavaScript" class="hidden">
+                        <label for="java" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Java & JavaScript</h3>
+                            <p class="text-gray-300 mb-4">Learn both Java for backend and JavaScript for frontend development.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">Comprehensive</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="react" name="courses" value="React and React Native" class="hidden">
+                        <label for="react" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">React & React Native</h3>
+                            <p class="text-gray-300 mb-4">Build modern web and mobile applications with React frameworks.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">Cutting Edge</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="course-card bg-matteBlack p-6 rounded-lg border border-midnightBlack transition duration-300 cursor-pointer">
+                        <input type="checkbox" id="ai" name="courses" value="AI Engineering" class="hidden">
+                        <label for="ai" class="flex flex-col h-full">
+                            <div class="text-gold text-2xl mb-3">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">AI Engineering</h3>
+                            <p class="text-gray-300 mb-4">Dive into artificial intelligence, machine learning and data science.</p>
+                            <div class="mt-auto">
+                                <span class="inline-block bg-gold text-black text-sm px-3 py-1 rounded-full">Future Tech</span>
+                            </div>
+                        </label>
                     </div>
                 </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="bg-matteblack border border-gold/20 rounded-xl p-8">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-gold"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Michael Chen</h4>
-                            <p class="text-sm text-gray-400">CTO, DataSystems</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">
-                        "Eck Tech's software development team delivered our project ahead of schedule with exceptional quality. Their attention to detail is unmatched."
-                    </p>
-                    <div class="flex text-gold">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+
+                <div class="mb-6">
+                    <label for="message" class="block text-lg mb-2">Your Message (Optional)</label>
+                    <textarea id="message" name="message" rows="4" class="w-full bg-matteBlack border border-midnightBlack rounded-lg p-4 focus:border-gold focus:outline-none" placeholder="Add any additional information or questions here..."></textarea>
                 </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="bg-matteblack border border-gold/20 rounded-xl p-8">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-gold"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">David Rodriguez</h4>
-                            <p class="text-sm text-gray-400">Marketing Director, BrandWorks</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 mb-4">
-                        "The graphic design training was exactly what our marketing team needed. We've significantly improved our visual content quality and production speed."
-                    </p>
-                    <div class="flex text-gold">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
+
+                <div class="text-center">
+                    <button type="button" id="submitBtn" class="whatsapp-btn bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full inline-flex items-center transition">
+                        <i class="fab fa-whatsapp mr-2 text-xl"></i> Send via WhatsApp
+                    </button>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-matteblack px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Get In <span class="text-gold">Touch</span>
-                </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Have a project in mind or want to learn more about our programs? Reach out to us!
-                </p>
-            </div>
-            
-            <div class="md:flex">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <div class="bg-gradient-to-br from-matteblack to-matteblack/90 border border-gold/20 rounded-xl p-8 h-full">
-                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-map-marker-alt text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Location</h4>
-                                    <p class="text-gray-400">123 Tech Street, Silicon Valley, CA 94000</p>
-                                </div>
+    <section id="contact" class="py-16 px-6 bg-matteBlack">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Contact Us</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Get in Touch</h3>
+                    <p class="mb-6">Have questions about our courses or need guidance on which program is right for you? Reach out to us!</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="text-gold mr-4 mt-1">
+                                <i class="fas fa-phone-alt"></i>
                             </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-envelope text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Email Us</h4>
-                                    <p class="text-gray-400">info@ecktech.dev</p>
-                                    <p class="text-gray-400">support@ecktech.dev</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center mr-4">
-                                    <i class="fas fa-phone-alt text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold mb-1">Call Us</h4>
-                                    <p class="text-gray-400">+1 (555) 123-4567</p>
-                                    <p class="text-gray-400">Mon-Fri: 9am-6pm</p>
-                                </div>
+                            <div>
+                                <h4 class="font-bold">Phone</h4>
+                                <p>+233 574 168 196</p>
                             </div>
                         </div>
-                        
-                        <div class="mt-8">
-                            <h4 class="font-bold mb-4">Follow Us</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="w-10 h-10 bg-gold/10 hover:bg-gold/20 rounded-full flex items-center justify-center text-gold transition duration-300">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-gold/10 hover:bg-gold/20 rounded-full flex items-center justify-center text-gold transition duration-300">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-gold/10 hover:bg-gold/20 rounded-full flex items-center justify-center text-gold transition duration-300">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-gold/10 hover:bg-gold/20 rounded-full flex items-center justify-center text-gold transition duration-300">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
+                        <div class="flex items-start">
+                            <div class="text-gold mr-4 mt-1">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">WhatsApp</h4>
+                                <p>+233 574 168 196</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-gold mr-4 mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <p>info@ecktech.dev</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="md:w-1/2">
-                    <form id="courseForm" class="bg-gradient-to-br from-matteblack to-matteblack/90 border border-gold/20 rounded-xl p-8">
-                        <div class="mb-6">
-                            <label class="block text-gray-300 mb-2">Selected Courses</label>
-                            <div id="selectedCourses" class="bg-matteblack border border-gold/20 rounded-lg p-4 min-h-12 text-gray-400">
-                                No courses selected yet
-                            </div>
-                        </div>
-                        <div class="grid md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label for="name" class="block text-gray-300 mb-2">Your Name</label>
-                                <input type="text" id="name" class="w-full bg-matteblack border border-gold/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-transparent" placeholder="John Doe">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-300 mb-2">Your Email</label>
-                                <input type="email" id="email" class="w-full bg-matteblack border border-gold/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-transparent" placeholder="john@example.com">
-                            </div>
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label for="subject" class="block text-gray-300 mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full bg-matteblack border border-gold/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-transparent" placeholder="How can we help you?">
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-300 mb-2">Your Message</label>
-                            <textarea id="message" rows="5" class="w-full bg-matteblack border border-gold/20 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-transparent" placeholder="Tell us about your project or inquiry..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-gold hover:bg-gold/90 text-matteblack font-bold py-3 px-6 rounded-lg transition duration-300">
-                            Send Message
-                        </button>
-                    </form>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <p class="mb-6">Stay updated with our latest courses, offers, and tech tips by following us on social media.</p>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gold hover:text-yellow-600 text-2xl">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gold hover:text-yellow-600 text-2xl">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gold hover:text-yellow-600 text-2xl">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gold hover:text-yellow-600 text-2xl">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gold hover:text-yellow-600 text-2xl">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-b from-matteblack to-black py-12 px-4 sm:px-6 lg:px-8 border-t border-gold/10">
-        <div class="max-w-7xl mx-auto">
-            <div class="md:flex md:justify-between">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-code text-gold text-2xl mr-2"></i>
-                        <span class="text-gold font-bold text-xl">Eck Tech</span>
+    <footer class="py-8 px-6 bg-deepBlack border-t border-midnightBlack">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-laptop-code text-gold text-2xl"></i>
+                        <h2 class="text-xl font-bold gradient-text">Eck Tech Developers Hub</h2>
                     </div>
-                    <p class="text-gray-400 max-w-xs">
-                        Full-service tech solutions provider offering innovative services and comprehensive training programs.
-                    </p>
+                    <p class="text-sm mt-2">Empowering the next generation of tech professionals.</p>
                 </div>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                    <div>
-                        <h3 class="text-gold font-bold mb-4">Services</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Software Development</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">UX/UI Design</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Tech Training</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Mobile Apps</a></li>
-                        </ul>
+                <div class="text-center md:text-right">
+                    <p>&copy; 2023 Eck Tech Developers Hub. All rights reserved.</p>
+                    <div class="mt-2 space-x-4">
+                        <a href="#" class="text-sm hover:text-gold">Privacy Policy</a>
+                        <a href="#" class="text-sm hover:text-gold">Terms of Service</a>
                     </div>
-                    
-                    <div>
-                        <h3 class="text-gold font-bold mb-4">Programs</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Web Design</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Graphic Design</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Python Programming</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Ethical Hacking</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-gold font-bold mb-4">Company</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">About Us</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Careers</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Blog</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-gold transition duration-300">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="border-t border-gold/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">
-                    &copy; 2023 Eck Tech Developers Hub. All rights reserved.
-                </p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-gold transition duration-300">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition duration-300">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition duration-300">
-                        <i class="fab fa-instagram"></i>
-                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 bg-gold hover:bg-gold/90 text-matteblack rounded-full flex items-center justify-center shadow-lg transition duration-300 opacity-0 invisible">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <script>
-        // Course Selection
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        const selectedCoursesDiv = document.getElementById('selectedCourses');
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
         
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateSelectedCourses);
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
-        
-        function updateSelectedCourses() {
-            const selected = Array.from(checkboxes)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => {
-                    const card = checkbox.closest('.program-card');
-                    return card.querySelector('h3').textContent;
-                });
+
+        // Course card selection
+        const courseCards = document.querySelectorAll('.course-card');
+        courseCards.forEach(card => {
+            const checkbox = card.querySelector('input[type="checkbox"]');
             
-            if (selected.length > 0) {
-                selectedCoursesDiv.innerHTML = selected.map(course => 
-                    `<div class="flex items-center py-1">
-                        <i class="fas fa-check-circle text-gold mr-2"></i>
-                        <span>${course}</span>
-                    </div>`
-                ).join('');
+            card.addEventListener('click', (e) => {
+                // Don't toggle if clicking on the label directly
+                if (e.target.tagName === 'LABEL' || e.target.tagName === 'INPUT') return;
+                
+                checkbox.checked = !checkbox.checked;
+                updateCardStyle(card, checkbox.checked);
+            });
+            
+            // Initialize card styles based on checkbox state
+            updateCardStyle(card, checkbox.checked);
+        });
+
+        function updateCardStyle(card, isChecked) {
+            if (isChecked) {
+                card.classList.add('border-gold', 'bg-midnightBlack');
+                card.classList.remove('border-midnightBlack', 'bg-matteBlack');
             } else {
-                selectedCoursesDiv.textContent = 'No courses selected yet';
+                card.classList.add('border-midnightBlack', 'bg-matteBlack');
+                card.classList.remove('border-gold', 'bg-midnightBlack');
             }
         }
 
-        // Form Submission to WhatsApp
-        document.getElementById('courseForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // WhatsApp submission
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            const selectedCourses = Array.from(document.querySelectorAll('input[name="courses"]:checked'))
+                .map(el => el.value)
+                .join(', ');
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+            const customMessage = document.getElementById('message').value;
             
-            const selectedCourses = Array.from(checkboxes)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => {
-                    const card = checkbox.closest('.program-card');
-                    return card.querySelector('h3').textContent;
-                });
-            
-            const whatsappMessage = 
-                `New Course Inquiry from ${name}%0A%0A` +
-                `Email: ${email}%0A` +
-                `Subject: ${subject}%0A%0A` +
-                `Selected Courses:%0A${selectedCourses.join('%0A')}%0A%0A` +
-                `Message:%0A${message}`;
-            
-            window.open(`https://wa.me/233574168196?text=${whatsappMessage}`, '_blank');
-        });
-
-        // Back to Top Button
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
+            if (!selectedCourses) {
+                alert('Please select at least one course.');
+                return;
             }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Mobile menu toggle (would need additional implementation)
-        const mobileMenuButton = document.querySelector('.md\\:hidden button');
-        mobileMenuButton.addEventListener('click', () => {
-            // This would toggle a mobile menu (implementation not shown)
-            console.log('Mobile menu would open');
+            
+            let whatsappMessage = `Hello Eck Tech,\n\nI'm interested in the following courses:\n${selectedCourses}`;
+            
+            if (customMessage) {
+                whatsappMessage += `\n\nAdditional Message:\n${customMessage}`;
+            }
+            
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/233574168196?text=${encodedMessage}`;
+            
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
         });
     </script>
 </body>
